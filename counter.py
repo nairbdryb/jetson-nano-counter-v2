@@ -17,8 +17,7 @@ while display.IsStreaming():
 	rects = []
 	detections = net.Detect(img)
 	for obj in detections:
-		if obj.ClassID == 1:
-			rects.append((int(obj.Left), int(obj.Bottom), int(obj.Right), int(obj.Top)))
+		rects.append((int(obj.Left), int(obj.Bottom), int(obj.Right), int(obj.Top)))
 	
 	objects = ct.update(rects)
 	for (objectId, bbox) in objects.items():
