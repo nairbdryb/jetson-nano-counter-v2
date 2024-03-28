@@ -1,20 +1,14 @@
 import serial
 import time
-arduino = serial.Serial(port='COM4', baudrate=115200, timeout=.1)
-
-def write_data(x):
-    arduino.write(bytes(x, 'utf-8'))
-
-def read_data():
-    data = arduino.readline().decode("utf-8")
+arduino = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, timeout=.1)
+def write_read(x):
+    data = arduino.readline()
     return data
-
-
 while True:
     num = input("Enter a number: ") # Taking input from user
-    write_data(num)
-    for i in range(10):
-        time.sleep(.3)
-        value = read_data() # reading the data from the arduino
+    arduino.write(bytes(num, 'utf-8'))
+    time.sleep(10)
+    for i in range(8):
+        value = write_read(num)
         print(value) # printing the value
 
