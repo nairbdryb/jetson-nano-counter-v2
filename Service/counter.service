@@ -1,0 +1,9 @@
+[Unit]
+Description=trail counter service
+
+[Service]
+ExecStart=/usr/bin/python3 /home/utopia/jetson-nano-counter-v2/counter.py
+User=utopia
+
+[Install]
+WantedBy=multi-user.target
