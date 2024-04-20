@@ -44,6 +44,39 @@ sudo make install
 sudo ldconfig
 ```
 
+## Setup
+- Connect the Arducam camera to the Jetson Nano's camera port.
+- Connect the Jetson Nano to a monitor, keyboard, and mouse.
+- Power on the Jetson Nano.
+- Log in
+- Clone this repository and run the counter.py program using python3
+    ```bash
+    git clone https://github.com/nairbdryb/jetson-nano-counter-v2
+    ```
+- create the service file
+    ```bash
+    sudo cp ./Service/counter.service /etc/systemd/system/counter.service
+    ```
+- enable the service
+    ```bash
+    sudo systemctl enable counter.service
+    ```
+- start the service
+    ```bash
+    sudo systemctl start counter.service
+    ```
+- check the status of the service
+    ```bash
+    sudo systemctl status counter.service
+    ```
+- If the service is running correctly, you may now disconnect the monitor, keyboard, and mouse. The counter will now run on boot.
+
+## Troubleshooting
+If you get an error that says /dev/ttyUSB0 does not have permission, you may need to add your user to the dialout group. Run the following command to add your user to the dialout group:
+```bash
+sudo usermod -a -G dialout {USER}
+```
+
 ## Description of Files
 - counter.py: The main program that runs the counter. This program tracks the number of people on the screen, current bounding boxes, the video input and output stream, and the current frame.
 - centroidtracker.py: This file contains the logic for tracking objects. It calculates the distance between a bounding box in this frame and previous frames to determine if it is a new object or an existing object.
