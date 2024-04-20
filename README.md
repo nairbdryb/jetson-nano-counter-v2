@@ -82,4 +82,6 @@ sudo usermod -a -G dialout {USER}
 - centroidtracker.py: This file contains the logic for tracking objects. It calculates the distance between a bounding box in this frame and previous frames to determine if it is a new object or an existing object.
 - requirements.txt: This file contains the python packages required to run the counter.py program.
 - README.md: This file contains the instructions for installing and running the counter.py program. You are looking at this file right now.
-- chirpstack.py: This file has not been implemented into the main program yet. It contains logic for sending data through the serial port to a LoRa compatible Arduino. This Arduino would then send the data to a LoRa gateway to be forwarded to a server. This feature will be implemented in a future version.
+- lora_adapter_v2/send_data.py: This file contains the logic for communicating over serial with an arduino. This file is not currently used in the counter.py program.
+- Service/counter.service: This file contains the service file that is used to run the counter.py program on boot. This file is copied to /etc/systemd/system/counter.service during the setup process.
+- lora_adapter_v2/arduino_to_lora.c: This file contains the logic for communicating with the LoRa gateway. 
